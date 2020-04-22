@@ -14,3 +14,8 @@ function ajouter_vue ()
 }
 
 
+function nombre_vues(): string
+{
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
+    return file_get_contents($fichier);
+}

@@ -6,7 +6,9 @@
         <?php
         require_once __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'compteur.php';
         ajouter_vue();
+        $vues = nombre_vues();
         ?>
+        <p>Il y a <?= $vues ?> visite<?php if($vues > 1): ?>s<?php endif ?> sur le site</p>
     </div>
     <div class="col-md-4">
         <form action="/newsletter.php" method="POST">
