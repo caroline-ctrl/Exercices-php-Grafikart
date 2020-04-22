@@ -8,7 +8,7 @@
         ajouter_vue();
         $vues = nombre_vues();
         ?>
-        <p>Il y a <?= $vues ?> visite<?php if($vues > 1): ?>s<?php endif ?> sur le site</p>
+        <p>Il y a <?= $vues ?> vue<?php if ($vues > 1): ?>s<?php endif ?></p>
     </div>
     <div class="col-md-4">
         <form action="/newsletter.php" method="POST">
