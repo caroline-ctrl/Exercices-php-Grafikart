@@ -1,6 +1,7 @@
-<?php 
+<?php
 $titre = "Accueil";
-require 'header.php' ?>
+require 'header.php' 
+?>
 
   <div class="starter-template">
     <h1>Bootstrap starter template</h1>

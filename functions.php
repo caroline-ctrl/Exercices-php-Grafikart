@@ -1,28 +1,29 @@
 <?php
-    function isActive(string $lien, string $title, string $linkClass = ''): string
-    {
-        $classe = "nav-item";
-        if ($_SERVER['SCRIPT_NAME'] === $lien){
-            $classe .= " active";
-        }
-        return <<<HTML
+function isActive(string $lien, string $title, string $linkClass = ''): string
+{
+    $classe = "nav-item";
+    if ($_SERVER['SCRIPT_NAME'] === $lien) {
+        $classe .= " active";
+    }
+    return <<<HTML
         <li class="$classe">
             <a class="$linkClass" href="$lien">$title</a>
         </li>
-HTML;    
-    }
+HTML;
+}
 
 
 function nav_menu(string $class = ''): string
 {
-    return 
-    isActive('/index.php', 'Accueil', $class) . ' ' . 
-    isActive('/contact.php', 'Contact', $class) . ' ' . 
-    isActive('/glace.php', 'Glaces', $class) . ' ' . 
-    isActive('/menu.php', 'Menu Pizza', $class) . ' ' .
-    isActive('/newsletter.php', 'Newsletter', $class);
+    return
+        isActive('/index.php', 'Accueil', $class) . ' ' .
+        isActive('/contact.php', 'Contact', $class) . ' ' .
+        isActive('/glace.php', 'Glaces', $class) . ' ' .
+        isActive('/menu.php', 'Menu Pizza', $class) . ' ' .
+        isActive('/newsletter.php', 'Newsletter', $class) . ' ' .
+        isActive('/dashboard.php', 'Dashboard', $class);
 }
-    
+
 
 
 
@@ -30,7 +31,7 @@ function nav_menu(string $class = ''): string
 function checkbox(string $name, string $value, array $data): string
 {
     $attributes = '';
-    if (isset($data[$name]) && in_array($value, $data[$name])){
+    if (isset($data[$name]) && in_array($value, $data[$name])) {
         $attributes .= 'checked';
     }
     return <<<HTML
@@ -42,7 +43,7 @@ HTML;
 function radio(string $name, string $value, array $data): string
 {
     $attributes = '';
-    if (isset($data[$name]) && $value === $data[$name]){
+    if (isset($data[$name]) && $value === $data[$name]) {
         $attributes = "checked";
     }
     return <<<HTML
@@ -81,12 +82,12 @@ HTML;
 
 function creneaux_html(array $creneaux)
 {
-    if (empty($creneaux)){
+    if (empty($creneaux)) {
         return 'fermé';
     }
     // pour afficher les horaires renseigné dans config.php
     $phrases = [];
-    foreach ($creneaux as $creneau){
+    foreach ($creneaux as $creneau) {
         $phrases[] = "<strong>{$creneau[0]}h</strong> - <strong>{$creneau[1]}h</strong>";
     }
     return 'Ouvert ' . implode(' et ', $phrases);
@@ -96,10 +97,10 @@ function creneaux_html(array $creneaux)
 
 function in_creneaux(int $heure, array $creneaux): bool
 {
-    foreach ($creneaux as $creneau){
+    foreach ($creneaux as $creneau) {
         $debut = $creneau[0];
         $fin = $creneau[1];
-        if ($heure >= $debut && $heure < $fin){
+        if ($heure >= $debut && $heure < $fin) {
             return true;
         }
     }
@@ -107,15 +108,12 @@ function in_creneaux(int $heure, array $creneaux): bool
 }
 
 
-function select (string $name, $value, array $options): string
+function select(string $name, $value, array $options): string
 {
     $html_option = [];
-    foreach ($options as $key => $option){
+    foreach ($options as $key => $option) {
         $attribute = $key == $value ? ' selected' : '';
         $html_option[] = "<option value='$key' $attribute>$option</option>";
     }
     return "<select class='form-control' name='$name'>" . implode($html_option) . '</select>';
 }
-
-
-

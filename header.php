@@ -1,4 +1,9 @@
-<?php require_once 'functions.php';
+<?php
+if(session_status() === PHP_SESSION_NONE){
+    session_start();
+}
+require_once 'functions.php';
+require_once 'functions/auth.php';
 ?><!doctype html>
 <html lang="en">
 
@@ -48,6 +53,11 @@
             <ul class="navbar-nav mr-auto">
                 <?= nav_menu('nav-link') ?>
             </ul>
+            <div class="navbar-nav">
+                <?php if (est_connecte()): ?>
+                    <li class="nav-item"><a href="/logout.php" class="nav-link">Deconnection</a></li>
+                <?php endif ?>
+            </div>
         </div>
     </nav>
 
