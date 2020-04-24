@@ -1,8 +1,9 @@
 <?php
 $titre = 'Connexion';
 $erreur = null;
+$password = '$2y$12$CuyQcG/muKa1gyJVNTfIM.y4WC9n4NIUs.J2CnRlWnN8Cb5ZvQ3sy';
 if (!empty($_POST['nom']) && !empty($_POST['pwd'])){
-    if ($_POST['nom'] === 'Oxie' && $_POST['pwd'] === '1'){
+    if ($_POST['nom'] === 'Oxie' && password_verify($_POST['pwd'], $password)){
         session_start();
         $_SESSION['connecte'] = 1;
         header('Location: /dashboard.php');
@@ -35,5 +36,6 @@ require_once  'header.php';
         </div>
         <button type="submit" class="btn btn-info">Envoyer</button>
     </form>
+
     
 <?php require 'footer.php'; ?>
