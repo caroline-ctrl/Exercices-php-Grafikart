@@ -1,4 +1,5 @@
 <?php
-// pour avoir le chemin absolut du fichier
-$fichier = __DIR__ . DIRECTORY_SEPARATOR . 'demo.txt';
-file_put_contents($fichier, 'Salut les gens');
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'class' . DIRECTORY_SEPARATOR . 'Form.php';
+
+$form = new Form();
+echo $form->checkbox('demo', 'Demo', []);

@@ -4,9 +4,10 @@
 <div class="row">
     <div class="col-md-4">
         <?php
-        require_once __DIR__ . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'compteur.php';
-        ajouter_vue();
-        $vues = nombre_vues();
+        require_once __DIR__ . DIRECTORY_SEPARATOR . 'class' . DIRECTORY_SEPARATOR . 'Compteur.php';
+        $compteur = new Compteur(__DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur');
+        $compteur->incrementer();
+        $vues = $compteur->recuperer();
         ?>
         <p>Il y a <?= $vues ?> vue<?php if ($vues > 1): ?>s<?php endif ?></p>
     </div>
